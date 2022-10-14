@@ -35,16 +35,3 @@ Route::post('/req', [BooksController::class, 'store'])->name('req');
 Route::get('/delete/{id}', [BooksController::class, 'destroy'])->name('delete');
 Route::put('/put/{id}', [BooksController::class, 'updateBook'])->name('put');
 Route::post('/findBook', [BooksController::class, 'findBook'])->name('Find');
-
-
-// Route::get('/findBook', function () {
-
-//     // Check for search input
-//     if (request('search')) {
-//         $book = Books::where('name', 'like', '%' . request('search') . '%')->get();
-//     } else {
-//         $book = Books::all();
-//     }
-
-//     return view('welcome')->with('users', $book);
-// });
