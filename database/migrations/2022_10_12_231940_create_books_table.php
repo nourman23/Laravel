@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('book_title');
             $table->longText('book_description');
             $table->text('book_auther');
-            $table->binary('book_image');
+            $table->string('book_image');
         });
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Books;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\UploadedFile;
 
 
 
@@ -39,24 +40,43 @@ class BooksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    protected $fillable = ['book_title', 'book_description', 'book_auther'];
+    // protected $fillable = ['book_title', 'book_description', 'book_auther'];
 
     public function store(Request $request)
     {
-        // echo "<pre>";
-        // dd($request);
-        // echo "</pre>";
 
-        // $book = Books::all();
-        // dd($book);
+        // $request->validate(
+        //     [
+        //         'book_title' => 'required',
+        //         'book_description' => 'required',
+        //         'book_auther' => 'required',
+        //         'book_image' => 'required|mimes:png,jpg,jpeg|max:5048'
+        //     ]
+        // );
 
 
-        $book = new Books();
 
-        $book->book_title = $request->book_title;
-        $book->book_description = $request->book_description;
-        $book->book_auther = $request->book_auther;
-        $book->book_image = $request->book_image;
+        $newImageName = time() . '-' . $request->book_title . '.' . $request->book_image->extension();
+
+        //store the image :
+
+        $request->book_image->move(public_path('images'), $newImageName);
+
+        //new book information
+        $book = Books::create([
+            'book_title' => $request->input('book_title'),
+            'book_description' => $request->input('book_description'),
+            'book_auther' => $request->input('book_auther'),
+            'book_image' => $newImageName,
+        ]);
+        // $book = new Books();
+
+        // $book->book_title = $request->book_title;
+        // $book->book_description = $request->book_description;
+        // $book->book_auther = $request->book_auther;
+        // $book->book_image = $newImageName;
+
+
         $book->save();
         return redirect('/index');
     }

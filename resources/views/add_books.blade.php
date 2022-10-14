@@ -41,7 +41,7 @@ form .btn{
 </head>
 <body>
     <div class="container w-25">
-    <form action="/req" method="POST">
+    <form action="/req" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Book title</label>
@@ -59,7 +59,7 @@ form .btn{
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Book image </label>
-            <input name="book_image" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input name="book_image" type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text"></div>
           </div>
 
