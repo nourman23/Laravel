@@ -84,6 +84,15 @@ color: white;
 .card-body p{
   margin: 10px
 }
+.back{
+  color: black;
+
+}
+.backLink{
+    
+    text-align: center;
+  margin: 20px;
+}
 </style>
 </head>
 <body>
@@ -91,16 +100,8 @@ color: white;
     <header>
        
       </header>
-      <div class="AddBookLink"><a href="/add"><div class="AddBookLinkBtn">ADD BOOK</div></a></div>
-      <div class="searchBooh"> 
-        <form action="/findBook" method="POST">
-          @csrf
-          <div class="mb-3">
-            <input name="search" type="text" style="width:300px; margin-left:30px" placeholder="Search for a book" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text"></div>
-          </div>
-        </form>
-      </div>
+
+    <div class="backLink"> <a href="/index" class="back"> <= BACK TO THE BOOKS</a></div> 
 <div class=" d-flex flex-wrap w-75">
 @foreach ($books as $book)
 <div id="cardsDiv" class="card m-4" style="width: 19rem;">

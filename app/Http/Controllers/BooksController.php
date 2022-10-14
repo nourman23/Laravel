@@ -45,16 +45,14 @@ class BooksController extends Controller
     public function store(Request $request)
     {
 
-        // $request->validate(
-        //     [
-        //         'book_title' => 'required',
-        //         'book_description' => 'required',
-        //         'book_auther' => 'required',
-        //         'book_image' => 'required|mimes:png,jpg,jpeg|max:5048'
-        //     ]
-        // );
-
-
+        $request->validate(
+            [
+                'book_title' => 'required',
+                'book_description' => 'required',
+                'book_auther' => 'required',
+                'book_image' => 'required|mimes:png,jpg,jpeg|max:5048'
+            ]
+        );
 
         $newImageName = time() . '-' . $request->book_title . '.' . $request->book_image->extension();
 
@@ -140,5 +138,13 @@ class BooksController extends Controller
         $book->book_image = $request->book_image;
         $book->save();
         return redirect('/index');
+    }
+
+    public function findBook(Request $request)
+    {
+        $book = Books::where('book_title', 'like', '%' . $request->search . '%')->get();
+
+        // dd($book);
+        return view('viewBook', ['books' => $book]);
     }
 }
