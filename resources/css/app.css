@@ -1,0 +1,11 @@
+.addPageBody {
+    height: 70vh;
+    font-family: "Caveat";
+    background-image: url("https://www.parentmap.com/sites/default/files/styles/1180x660_scaled_cropped/public/2017-05/books-istock-5-18-17_1.jpg?itok=jc-KwG34");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.addPageBody form {
+    margin-top: 120px;
+}
